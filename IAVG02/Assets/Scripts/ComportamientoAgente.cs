@@ -12,6 +12,13 @@ namespace UCM.IAV.Movimiento
 {
 
     using UnityEngine;
+    public enum Estado : int
+    {
+        FLAUTA_ON = 0,
+        FLAUTA_OFF = 1,
+
+        SIZE = 2
+    };
 
     /// <summary>
     /// Clase abstracta que funciona como plantilla para todos los comportamientos de agente
@@ -36,11 +43,18 @@ namespace UCM.IAV.Movimiento
         protected Agente agente;
 
         /// <summary>
+        /// Estado del agente, representa si la flauta suena o no
+        /// </summary>
+        [Tooltip("Estado del agente")]
+        protected Estado estado;
+
+        /// <summary>
         /// Al despertar, establecer el agente que hará uso del comportamiento
         /// </summary>
         public virtual void Awake()
         {
             agente = gameObject.GetComponent<Agente>();
+            estado = Estado.FLAUTA_OFF;
         }
 
         /// <summary>
@@ -94,6 +108,14 @@ namespace UCM.IAV.Movimiento
             vector.x = Mathf.Sin(orientacion * Mathf.Deg2Rad) * 1.0f;
             vector.z = Mathf.Cos(orientacion * Mathf.Deg2Rad) * 1.0f;
             return vector.normalized;
+        }
+
+        /// <summary>
+        /// Avisa al agente que si se está tocando la flauta
+        /// </summary>
+        public virtual void TocaFlauta(Estado nuevo)
+        {
+            estado = nuevo;
         }
     }
 }

@@ -13,12 +13,15 @@ namespace UCM.IAV.Movimiento {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using UnityEngine; 
+    using System.Linq;
+    using UnityEngine;
+
 
 /// <summary>
 /// La clase Agente es responsable de modelar los agentes y gestionar todos los comportamientos asociados para combinarlos (si es posible) 
 /// </summary>
     public class Agente : MonoBehaviour {
+
         /// <summary>
         /// Combinar por peso
         /// </summary>
