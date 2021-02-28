@@ -8,6 +8,7 @@ namespace UCM.IAV.Movimiento
     {
         private GameObject flautista;
 
+        public float distanciaSeguridad = 10.0f;
         private void Start()
         {
             flautista = objetivo;
@@ -16,20 +17,15 @@ namespace UCM.IAV.Movimiento
         /// <summary>
         /// En cada tick, mover el avatar del jugador según las órdenes de este último
         /// </summary>
+        /// //TODO
         public override void Update()
         {
-            //Huye del flautista
-            switch (estado)
+            if (estado == Estado.FLAUTA_ON && (transform.position - flautista.transform.position).magnitude < distanciaSeguridad)
             {
-                case Estado.FLAUTA_ON:
-                    //Huye del flautista
-                    CalculaLejano();
-                    break;
-                default:
-                    break;
+                CalculaLejano();
             }
 
-            base.Update();
+            //base.Update();
         }
 
         /// <summary>
@@ -38,20 +34,23 @@ namespace UCM.IAV.Movimiento
         public override void TocaFlauta(Estado nuevo)
         {
             estado = nuevo;
-            print("Cambio de objetivo");
+            print("Cambio de objetivo " + nuevo.ToString());
 
             //Lógica del perro
             switch (estado)
             {
                 case Estado.FLAUTA_OFF:
                     //Sigue hacia el flautista
-                    objetivo = GameObject.Find("Flautista");
+                    navAgente.destination = flautista.transform.position;
                     break;
                 default:
                     break;
             }
         }
 
+        /// <summary>
+        /// Calcula el punto más lejano del jugador
+        /// </summary>
         private void CalculaLejano()
         {
             //Lista de los muros del escenario
@@ -61,14 +60,17 @@ namespace UCM.IAV.Movimiento
             //Auxiliar de la posición del objetivo acutal
             Vector3 aux = flautista.transform.position;
             //Busca el muro más lejano para que el perro huya
+            Vector3 objPos = Vector3.zero;
             foreach (GameObject muro in muros)
             {
                 if ((aux - muro.transform.position).magnitude > maxDir)
                 {
                     maxDir = (aux - muro.transform.position).magnitude;
-                    objetivo = muro;
+                    objPos = muro.transform.position;
                 }
             }
+            navAgente.destination = objPos;
+
         }
         public override Direccion GetDireccion()
         {

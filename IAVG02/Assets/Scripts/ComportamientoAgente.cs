@@ -12,6 +12,8 @@ namespace UCM.IAV.Movimiento
 {
 
     using UnityEngine;
+    using UnityEngine.AI;
+
     public enum Estado : int
     {
         FLAUTA_ON = 0,
@@ -48,12 +50,15 @@ namespace UCM.IAV.Movimiento
         [Tooltip("Estado del agente")]
         protected Estado estado;
 
+        protected NavMeshAgent navAgente;
+
         /// <summary>
         /// Al despertar, establecer el agente que hará uso del comportamiento
         /// </summary>
         public virtual void Awake()
         {
             agente = gameObject.GetComponent<Agente>();
+            navAgente = GetComponent<NavMeshAgent>();
             estado = Estado.FLAUTA_OFF;
         }
 
