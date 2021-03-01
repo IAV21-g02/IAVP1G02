@@ -24,8 +24,9 @@ namespace UCM.IAV.Movimiento
             {
                 CalculaLejano();
             }
+            else if(estado == Estado.FLAUTA_OFF) navAgente.destination = flautista.transform.position;
 
-            //base.Update();
+            // base.Update();
         }
 
         /// <summary>
