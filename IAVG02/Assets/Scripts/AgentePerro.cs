@@ -78,6 +78,7 @@ namespace UCM.IAV.Movimiento
         {
             Direccion direccion = new Direccion();
             direccion.lineal = objetivo.transform.position - transform.position;
+            direccion.lineal.y = 0;
             direccion.lineal.Normalize();
             direccion.lineal = direccion.lineal * agente.aceleracionMax;
             return direccion;
