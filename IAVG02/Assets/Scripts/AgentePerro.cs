@@ -8,11 +8,25 @@ namespace UCM.IAV.Movimiento
     {
         private GameObject flautista;
 
-        public float distanciaSeguridad = 10.0f;
+        public float distanciaSeguridad = 20.0f;
         private void Start()
         {
+            Debug.Log("Start perro");
+            objetivo = GameObject.FindGameObjectWithTag("Player");
             flautista = objetivo;
+            //avisamos de nuestra existencia a la flauta
+            Debug.Log("perro antes de llamar a la flauta");
+            Flauta aux = objetivo.GetComponent<Flauta>();
+            if (aux != null) {
+                Debug.Log("perro entro en if");
+                aux.AnadeAgente(this);
+                Debug.Log("perro despues de llamar a flauta");
+            }
+            else Debug.Log("error");
+
         }
+
+    
 
         /// <summary>
         /// En cada tick, mover el avatar del jugador según las órdenes de este último

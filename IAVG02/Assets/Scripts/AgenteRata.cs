@@ -21,15 +21,25 @@ namespace UCM.IAV.Movimiento
         // Start is called before the first frame update
         void Start()
         {
+            Debug.Log("Start rata");
             //Nos guardamos una referencia al flautista para los posibles cambios de objetivo que pueda haber
+            objetivo = GameObject.FindGameObjectWithTag("Player");
             flautista = objetivo;
             //limX = suelo.bounds.max.x;
             //limZ = suelo.bounds.max.z;
             limX = 50.0f;
             limZ = 50.0f;
+
+            //avisamos de nuestra existencia a la flauta
+            Flauta aux = objetivo.GetComponent<Flauta>();
+            if (aux != null) aux.AnadeAgente(this);
+            else Debug.Log("error");
+
             InvokeRepeating("CambiaObjetivo", 0, 5.0f);
 
         }
+
+      
 
         void CambiaObjetivo()
         {

@@ -39,6 +39,7 @@ namespace UCM.IAV.Movimiento
         /// Objetivo (para aplicar o representar el comportamiento, depende del comportamiento que sea)
         /// </summary>
         public GameObject objetivo;
+        //private GameObject objetivo;
         /// <summary>
         /// Agente que hace uso del comportamiento
         /// </summary>
@@ -58,6 +59,9 @@ namespace UCM.IAV.Movimiento
         {
             agente = gameObject.GetComponent<Agente>();
             estado = Estado.FLAUTA_OFF;
+
+            
+
         }
 
         /// <summary>
