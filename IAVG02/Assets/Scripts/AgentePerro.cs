@@ -24,9 +24,9 @@ namespace UCM.IAV.Movimiento
             {
                 CalculaLejano();
             }
-            else if(estado == Estado.FLAUTA_OFF) navAgente.destination = flautista.transform.position;
+            else if(estado == Estado.FLAUTA_OFF) objetivo = flautista;
 
-            // base.Update();
+            base.Update();
         }
 
         /// <summary>
@@ -35,14 +35,13 @@ namespace UCM.IAV.Movimiento
         public override void TocaFlauta(Estado nuevo)
         {
             estado = nuevo;
-            print("Cambio de objetivo " + nuevo.ToString());
 
             //Lógica del perro
             switch (estado)
             {
                 case Estado.FLAUTA_OFF:
                     //Sigue hacia el flautista
-                    navAgente.destination = flautista.transform.position;
+                    objetivo = flautista;
                     break;
                 default:
                     break;
@@ -62,15 +61,17 @@ namespace UCM.IAV.Movimiento
             Vector3 aux = flautista.transform.position;
             //Busca el muro más lejano para que el perro huya
             Vector3 objPos = Vector3.zero;
+            GameObject nuevoObjetivo = null;
             foreach (GameObject muro in muros)
             {
                 if ((aux - muro.transform.position).magnitude > maxDir)
                 {
                     maxDir = (aux - muro.transform.position).magnitude;
                     objPos = muro.transform.position;
+                    nuevoObjetivo = muro;
                 }
             }
-            navAgente.destination = objPos;
+           objetivo = nuevoObjetivo;
 
         }
         public override Direccion GetDireccion()

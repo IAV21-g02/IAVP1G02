@@ -50,7 +50,6 @@ namespace UCM.IAV.Movimiento
         [Tooltip("Estado del agente")]
         protected Estado estado;
 
-        protected NavMeshAgent navAgente;
 
         /// <summary>
         /// Al despertar, establecer el agente que hará uso del comportamiento
@@ -58,7 +57,6 @@ namespace UCM.IAV.Movimiento
         public virtual void Awake()
         {
             agente = gameObject.GetComponent<Agente>();
-            navAgente = GetComponent<NavMeshAgent>();
             estado = Estado.FLAUTA_OFF;
         }
 

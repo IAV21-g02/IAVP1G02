@@ -207,25 +207,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 702712766}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &78873670 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7535736987416646849, guid: 849a0babac47cb64297209d013332647,
-    type: 3}
-  m_PrefabInstance: {fileID: 7535736987338035335}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &78873675
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 78873670}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &81180783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,11 +2259,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -4494091496837675215, guid: 849a0babac47cb64297209d013332647,
-        type: 3}
-      propertyPath: m_Speed
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 7535736987416646848, guid: 849a0babac47cb64297209d013332647,
         type: 3}
       propertyPath: objetivo
@@ -2348,23 +2324,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7535736987846695315, guid: 849a0babac47cb64297209d013332647,
-        type: 3}
-      propertyPath: m_Radius
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7535736987846695315, guid: 849a0babac47cb64297209d013332647,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7535736987846695316, guid: 849a0babac47cb64297209d013332647,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7535736987846695315, guid: 849a0babac47cb64297209d013332647, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 849a0babac47cb64297209d013332647, type: 3}
 --- !u!1001 &8096274365956959042
 PrefabInstance:
@@ -2373,6 +2333,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8096274364871336909, guid: 56579c97219793d4980825991967c48b,
+        type: 3}
+      propertyPath: suelo
+      value: 
+      objectReference: {fileID: 687511468}
     - target: {fileID: 8096274364871336909, guid: 56579c97219793d4980825991967c48b,
         type: 3}
       propertyPath: objetivo
