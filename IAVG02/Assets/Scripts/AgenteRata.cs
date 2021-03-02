@@ -32,7 +32,15 @@ namespace UCM.IAV.Movimiento
                     //Si NO suena la flauta, las ratas huyen del flautista
                    // Debug.Log("No implementado");
                     Debug.Log("No sonando");
+                    if (objetivo.transform.position != navAgente.destination)
+                    {
+                        navAgente.destination = new Vector3(Random.Range(transform.position.magnitude - 500.0f, transform.position.magnitude + 500.0f), 0,
+                            Random.Range(transform.position.magnitude - 500.0f, transform.position.magnitude + 500.0f));
 
+                        //Debug.Log("Nuevo objetivo RATA");
+                        //Otra opcion
+                        //navAgente.destination = new Vector3(Random.Range(-1000.0f, 1000.0f), 0, Random.Range(-1000.0f, 1000.0f));
+                    }
                     break;
                 default:
                     break;
