@@ -23,8 +23,10 @@ namespace UCM.IAV.Movimiento
         {
             //Nos guardamos una referencia al flautista para los posibles cambios de objetivo que pueda haber
             flautista = objetivo;
-            limX = suelo.bounds.max.x;
-            limZ = suelo.bounds.max.z;
+            //limX = suelo.bounds.max.x;
+            //limZ = suelo.bounds.max.z;
+            limX = 50.0f;
+            limZ = 50.0f;
             InvokeRepeating("CambiaObjetivo", 0, 5.0f);
 
         }
@@ -36,7 +38,7 @@ namespace UCM.IAV.Movimiento
                 Debug.Log("Cambio de objetivo");
                 Destroy(objetivo);
             }
-                
+
             Vector3 aux = new Vector3(Random.Range(-limX, limX ), 0, Random.Range(-limZ, limZ));
             objetivo = Instantiate(nuevoObjetivo, aux, Quaternion.identity);
         }

@@ -116,8 +116,13 @@ namespace UCM.IAV.Movimiento {
                 orientacion -= 360.0f;
             // El ForceMode dependerá de lo que quieras conseguir
             // Estamos usando VelocityChange sólo con propósitos ilustrativos
-            
-            cuerpoRigido.AddForce(displacement, ForceMode.VelocityChange);
+
+
+            transform.Translate(displacement, Space.World);
+            //transform.rotation = new Quaternion();
+            //transform.Rotate(Vector3.up, orientacion);
+
+            //cuerpoRigido.AddForce(displacement, ForceMode.VelocityChange);
             Vector3 orientationVector = OriToVec(orientacion);
             cuerpoRigido.rotation = Quaternion.LookRotation(orientationVector, Vector3.up);
         }
@@ -153,6 +158,7 @@ namespace UCM.IAV.Movimiento {
                 direccion = GetPrioridadDireccion();
                 grupos.Clear();
             }
+
             velocidad += direccion.lineal * Time.deltaTime;
             rotacion += direccion.angular * Time.deltaTime;
 

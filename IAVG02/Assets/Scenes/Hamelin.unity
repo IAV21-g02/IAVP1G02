@@ -2186,6 +2186,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4039248664267448905, guid: 8ad36583520f7b04f9c379efb94be489,
+        type: 3}
+      propertyPath: aceleracionMax
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4039248664267448918, guid: 8ad36583520f7b04f9c379efb94be489,
         type: 3}
       propertyPath: m_Name
@@ -2275,11 +2280,28 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 78873675, guid: 849a0babac47cb64297209d013332647, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 78873675, guid: 849a0babac47cb64297209d013332647, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 78873675, guid: 849a0babac47cb64297209d013332647, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7535736987416646848, guid: 849a0babac47cb64297209d013332647,
         type: 3}
       propertyPath: objetivo
       value: 
       objectReference: {fileID: 1021455439}
+    - target: {fileID: 7535736987416646848, guid: 849a0babac47cb64297209d013332647,
+        type: 3}
+      propertyPath: distanciaSeguridad
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7535736987416646849, guid: 849a0babac47cb64297209d013332647,
         type: 3}
       propertyPath: m_Name
@@ -2343,12 +2365,12 @@ PrefabInstance:
     - target: {fileID: 7535736987416646863, guid: 849a0babac47cb64297209d013332647,
         type: 3}
       propertyPath: velocidadMax
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7535736987416646863, guid: 849a0babac47cb64297209d013332647,
         type: 3}
       propertyPath: aceleracionMax
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 849a0babac47cb64297209d013332647, type: 3}
@@ -2362,12 +2384,12 @@ PrefabInstance:
     - target: {fileID: 8096274364871336908, guid: 56579c97219793d4980825991967c48b,
         type: 3}
       propertyPath: velocidadMax
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8096274364871336908, guid: 56579c97219793d4980825991967c48b,
         type: 3}
       propertyPath: aceleracionMax
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8096274364871336909, guid: 56579c97219793d4980825991967c48b,
         type: 3}
