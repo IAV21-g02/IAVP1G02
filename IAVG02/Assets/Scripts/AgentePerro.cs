@@ -7,40 +7,25 @@ namespace UCM.IAV.Movimiento
     public class AgentePerro : ComportamientoAgente
     {
         private GameObject flautista;
+        private Material mat;
 
-        public float distanciaSeguridad = 20.0f;
         private void Start()
         {
-            Debug.Log("Start perro");
             objetivo = GameObject.FindGameObjectWithTag("Player");
             flautista = objetivo;
             //avisamos de nuestra existencia a la flauta
-            Debug.Log("perro antes de llamar a la flauta");
-            Flauta aux = objetivo.GetComponent<Flauta>();
-            if (aux != null) {
-                Debug.Log("perro entro en if");
-                aux.AnadeAgente(this);
-                Debug.Log("perro despues de llamar a flauta");
+            Flauta aux = flautista.GetComponent<Flauta>();
+            mat = gameObject.GetComponentInChildren<Renderer>().material;
+            if (aux != null)
+            {
+                aux.InsertaAgente(this);
             }
-            else Debug.Log("error");
-
         }
 
-    
-
-        /// <summary>
-        /// En cada tick, mover el avatar del jugador según las órdenes de este último
-        /// </summary>
-        /// //TODO
-        public override void Update()
+        private void OnTriggerEnter(Collider other)
         {
-            if (estado == Estado.FLAUTA_ON && (transform.position - flautista.transform.position).magnitude < distanciaSeguridad)
-            {
-                CalculaLejano();
-            }
-            else if(estado == Estado.FLAUTA_OFF) objetivo = flautista;
-
-            base.Update();
+            if (estado == Estado.FLAUTA_ON && (other.gameObject.GetComponent<JugadorAgente>() ||
+                other.gameObject.GetComponent<AgenteRata>())) CalculaLejano();
         }
 
         /// <summary>
@@ -55,7 +40,12 @@ namespace UCM.IAV.Movimiento
             {
                 case Estado.FLAUTA_OFF:
                     //Sigue hacia el flautista
+                    mat.SetColor("_Color", Color.red);
                     objetivo = flautista;
+                    break;
+                case Estado.FLAUTA_ON:
+                    CalculaLejano();
+                    mat.SetColor("_Color", Color.Lerp(Color.red, Color.blue, 0.2f));
                     break;
                 default:
                     break;
@@ -85,9 +75,10 @@ namespace UCM.IAV.Movimiento
                     nuevoObjetivo = muro;
                 }
             }
-           objetivo = nuevoObjetivo;
+            objetivo = nuevoObjetivo;
 
         }
+
         public override Direccion GetDireccion()
         {
             Direccion direccion = new Direccion();

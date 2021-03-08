@@ -9,18 +9,15 @@ public class Flauta : MonoBehaviour
     private List<ComportamientoAgente> agentes;
     private Estado estado;
 
+    public Estado GetEstado() {
+        return estado;
+    }
+
     private void Start()
     {
-        Debug.Log("Start flauta");
         estado = Estado.FLAUTA_OFF;
         //Se buscan todos los objetos con el componente Agente o heredados de Agente
-        //ComportamientoAgente[] aux = GameObject.FindObjectsOfType<ComportamientoAgente>();
-        //foreach(ComportamientoAgente ag in aux)
-        //{
-        //    agentes.Add(ag);
-        //}
         agentes = new List<ComportamientoAgente>();
-        
     }
 
     /// <summary>
@@ -51,24 +48,21 @@ public class Flauta : MonoBehaviour
         //Se encarga de cambiar el estado de la flauta
         //Se toca la flauta mientras la tecla espacio este pulsada
         if (Input.GetKeyDown(KeyCode.Space)) {
+            gameObject.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.black);
             TocarFlauta();
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyCode.Space))
         {
+            gameObject.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.yellow);
             TocarFlauta();
         }
-        
     }
-    public void AnadeAgente(ComportamientoAgente agente)
+
+    public void InsertaAgente(ComportamientoAgente agente)
     {
         if (agente != null)
         {
-             Debug.Log("flauta entro en if");
             agentes.Add(agente);
-
         }
-        else Debug.Log("fallo");
-
     }
-  
 }

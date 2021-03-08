@@ -10,7 +10,6 @@
 */
 namespace UCM.IAV.Movimiento
 {
-
     /// <summary>
     /// Clase para modelar el comportamiento de SEGUIR a otro agente
     /// </summary>

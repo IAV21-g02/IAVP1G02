@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7535736987416646862}
   - component: {fileID: 7535736987416646863}
   - component: {fileID: 7535736987416646848}
-  - component: {fileID: 78873675}
   - component: {fileID: 339461212}
+  - component: {fileID: 5006005418177471278}
   m_Layer: 0
   m_Name: Perro
   m_TagString: Untagged
@@ -52,11 +52,8 @@ MonoBehaviour:
   umbralPrioridad: 0.2
   velocidadMax: 8
   aceleracionMax: 15
-  rotacionMax: 0
-  aceleracionAngularMax: 0
-  orientacion: 0
-  rotacion: 0
   velocidad: {x: 0, y: 0, z: 0}
+  force: 5
 --- !u!114 &7535736987416646848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,20 +69,6 @@ MonoBehaviour:
   peso: 1
   prioridad: 1
   objetivo: {fileID: 0}
-  distanciaSeguridad: 10
---- !u!135 &78873675
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7535736987416646849}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &339461212
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -102,6 +85,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!135 &5006005418177471278
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7535736987416646849}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7535736987846695317
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +109,7 @@ GameObject:
   - component: {fileID: 7535736987846695316}
   - component: {fileID: 7535736987846695313}
   - component: {fileID: 7535736987846695314}
+  - component: {fileID: 3400937050622836261}
   m_Layer: 0
   m_Name: CuerpoRobotico
   m_TagString: Untagged
@@ -181,3 +178,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!135 &3400937050622836261
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7535736987846695317}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

@@ -22,10 +22,6 @@ namespace UCM.IAV.Movimiento
     public class JugadorAgente : Agente
     {
         /// <summary>
-        /// El componente de cuerpo rígido
-        /// </summary>
-        private Rigidbody _cuerpoRigido;
-        /// <summary>
         /// Dirección del movimiento
         /// </summary>
         private Vector3 _dir;
@@ -35,7 +31,7 @@ namespace UCM.IAV.Movimiento
         /// </summary>
         private void Awake()
         {
-            _cuerpoRigido = GetComponent<Rigidbody>();
+            cuerpoRigido = GetComponent<Rigidbody>();
         }
 
         /// <summary>
@@ -53,13 +49,13 @@ namespace UCM.IAV.Movimiento
         /// </summary>
         public override void FixedUpdate()
         {
-            if (_cuerpoRigido == null)
+            if (cuerpoRigido == null)
             {
                 transform.Translate(velocidad * Time.deltaTime, Space.World);
             }
             else
             {
-                _cuerpoRigido.AddForce(velocidad * Time.deltaTime, ForceMode.VelocityChange);
+                cuerpoRigido.AddForce(force * velocidad.normalized, ForceMode.Acceleration);
             } 
         }
 

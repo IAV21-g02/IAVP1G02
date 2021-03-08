@@ -48,26 +48,6 @@ namespace UCM.IAV.Movimiento {
         [Tooltip("Aceleración máxima.")]
         public float aceleracionMax;
         /// <summary>
-        /// Rotación máxima
-        /// </summary>
-        [Tooltip("Rotación máxima.")]
-        public float rotacionMax;
-        /// <summary>
-        /// Aceleración angular máxima
-        /// </summary>
-        [Tooltip("Aceleración angular máxima.")]
-        public float aceleracionAngularMax;
-        /// <summary>
-        /// Orientacion (es como la velocidad angular)
-        /// </summary>
-        [Tooltip("Orientación.")]
-        public float orientacion;
-        /// <summary>
-        /// Rotatción (valor que puede variar, como la velocidad, para cambiar la orientación)
-        /// </summary>
-        [Tooltip("Rotación.")]
-        public float rotacion;
-        /// <summary>
         /// Velocidad
         /// </summary>
         [Tooltip("Velocidad.")]
@@ -86,8 +66,9 @@ namespace UCM.IAV.Movimiento {
         /// Componente de cuerpo rígido
         /// </summary>
         [Tooltip("Cuerpo rígido.")]
-        private Rigidbody cuerpoRigido;
+        protected Rigidbody cuerpoRigido;
 
+        public float force;
         /// <summary>
         /// Al comienzo, se inicialian algunas variables
         /// </summary>
@@ -106,25 +87,8 @@ namespace UCM.IAV.Movimiento {
         {
             if (cuerpoRigido == null)
                 return;
-
-            Vector3 displacement = velocidad * Time.deltaTime;
-            orientacion += rotacion * Time.deltaTime;
-            // Necesitamos "constreñir" inteligentemente la orientación al rango (0, 360)
-            if (orientacion < 0.0f)
-                orientacion += 360.0f;
-            else if (orientacion > 360.0f)
-                orientacion -= 360.0f;
-            // El ForceMode dependerá de lo que quieras conseguir
-            // Estamos usando VelocityChange sólo con propósitos ilustrativos
-
-
-            transform.Translate(displacement, Space.World);
-            //transform.rotation = new Quaternion();
-            //transform.Rotate(Vector3.up, orientacion);
-
-            //cuerpoRigido.AddForce(displacement, ForceMode.VelocityChange);
-            Vector3 orientationVector = OriToVec(orientacion);
-            cuerpoRigido.rotation = Quaternion.LookRotation(orientationVector, Vector3.up);
+            Vector3 desplazamiento = velocidad * Time.fixedDeltaTime;
+            transform.Translate(desplazamiento, Space.World);
         }
 
         /// <summary>
@@ -132,20 +96,11 @@ namespace UCM.IAV.Movimiento {
         /// </summary>
         public virtual void Update()
         {
-            //if (cuerpoRigido != null)
-            //    return;
-            //// ... código previo
-            //Vector3 desplazamiento = velocidad * Time.deltaTime;
-            //orientacion += rotacion * Time.deltaTime;
-            //// Necesitamos "constreñir" inteligentemente la orientación al rango (0, 360)
-            //if (orientacion < 0.0f)
-            //    orientacion += 360.0f;
-            //else if (orientacion > 360.0f)
-            //    orientacion -= 360.0f;
-            //transform.Translate(desplazamiento, Space.World);
-            //// Restaura la rotación al punto inicial antes de rotar el objeto nuestro valor
-            //transform.rotation = new Quaternion();
-            //transform.Rotate(Vector3.up, orientacion);
+            if (cuerpoRigido != null)
+                return;
+
+            Vector3 desplazamiento = velocidad * Time.deltaTime;
+            transform.Translate(desplazamiento, Space.World);
         }
 
         /// <summary>
@@ -160,22 +115,11 @@ namespace UCM.IAV.Movimiento {
             }
 
             velocidad += direccion.lineal * Time.deltaTime;
-            rotacion += direccion.angular * Time.deltaTime;
 
             if (velocidad.magnitude > velocidadMax)
             {
                 velocidad.Normalize();
                 velocidad = velocidad * velocidadMax;
-            }
-
-            if (rotacion > rotacionMax)
-            {
-                rotacion = rotacionMax;
-            }
-
-            if (direccion.angular == 0.0f)
-            {
-                rotacion = 0.0f;
             }
 
             if (direccion.lineal.sqrMagnitude == 0.0f)

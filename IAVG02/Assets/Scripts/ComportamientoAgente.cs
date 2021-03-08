@@ -51,7 +51,6 @@ namespace UCM.IAV.Movimiento
         [Tooltip("Estado del agente")]
         protected Estado estado;
 
-
         /// <summary>
         /// Al despertar, establecer el agente que hará uso del comportamiento
         /// </summary>
@@ -59,9 +58,6 @@ namespace UCM.IAV.Movimiento
         {
             agente = gameObject.GetComponent<Agente>();
             estado = Estado.FLAUTA_OFF;
-
-            
-
         }
 
         /// <summary>

@@ -14,79 +14,86 @@ namespace UCM.IAV.Movimiento
         public GameObject nuevoObjetivo;
         public MeshCollider suelo;
 
+        private Agente ag;
         private float limX;
         private float limZ;
-
+        private float radius;
+        private Material mat;
 
         // Start is called before the first frame update
         void Start()
         {
-            Debug.Log("Start rata");
             //Nos guardamos una referencia al flautista para los posibles cambios de objetivo que pueda haber
             objetivo = GameObject.FindGameObjectWithTag("Player");
             flautista = objetivo;
-            //limX = suelo.bounds.max.x;
-            //limZ = suelo.bounds.max.z;
-            limX = 50.0f;
-            limZ = 50.0f;
+
+
+            Vector3 suelo = GameObject.Find("Suelo").GetComponent<MeshCollider>().bounds.max;
+            limX = suelo.x;
+            limZ = suelo.z;
+
+            ag = gameObject.GetComponentInChildren<Agente>();
+            radius = gameObject.GetComponentInChildren<SphereCollider>().radius;
+            mat = gameObject.GetComponentInChildren<Renderer>().material;
 
             //avisamos de nuestra existencia a la flauta
-            Flauta aux = objetivo.GetComponent<Flauta>();
-            if (aux != null) aux.AnadeAgente(this);
-            else Debug.Log("error");
+            Flauta aux = flautista.GetComponent<Flauta>();
+           
+            if (aux != null)
+            {
+                aux.InsertaAgente(this);
+                estado = aux.GetEstado();
+            }
 
             InvokeRepeating("CambiaObjetivo", 0, 5.0f);
-
         }
 
-      
+        private void OnTriggerEnter(Collider other)
+        {
+
+            if (other.tag == "Player")
+                Debug.Log(estado.ToString() + " " + other.tag);
+
+            //Si la flauta esta activa y entra en contacto con el jugador
+            if (estado == Estado.FLAUTA_ON && other.gameObject.GetComponent<JugadorAgente>())
+            {
+                CancelInvoke();
+                mat.SetColor("_Color", Color.green);
+                if (objetivo != flautista) Destroy(objetivo);
+                objetivo = flautista;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            //Si la flauta esta activa y entra en contacto con el jugador
+            if (estado == Estado.FLAUTA_ON && other.gameObject.GetComponent<JugadorAgente>())
+            {
+                InvokeRepeating("CambiaObjetivo", 0, 5.0f);
+            }
+        }
 
         void CambiaObjetivo()
         {
+            mat.SetColor("_Color", Color.blue);
             if (objetivo != flautista)
             {
-                Debug.Log("Cambio de objetivo");
                 Destroy(objetivo);
             }
 
-            Vector3 aux = new Vector3(Random.Range(-limX, limX ), 0, Random.Range(-limZ, limZ));
+            Vector3 aux = new Vector3(Random.Range(-limX, limX), 0, Random.Range(-limZ, limZ));
             objetivo = Instantiate(nuevoObjetivo, aux, Quaternion.identity);
         }
 
-        //public override void Update()
-        //{
-        //    //switch (estado)
-        //    //{
-        //    //    case Estado.FLAUTA_ON:
-        //    //        //Si suena la flauta, las ratas siguen al flautista
-        //    //        Debug.Log("Sonando");
+        public override void Update()
+        {
+            if (estado == Estado.FLAUTA_ON && objetivo == flautista &&
+                (transform.position - flautista.transform.position).magnitude < radius / 5) {
+                ag.velocidad = Vector3.zero;
+            }
 
-        //    //        break;
-        //    //    case Estado.FLAUTA_OFF:
-        //    //        //Si NO suena la flauta, las ratas huyen del flautista
-        //    //       // Debug.Log("No implementado");
-        //    //        Debug.Log("No sonando");
-
-
-        //    //        //if (objetivo.transform.position == this.gameObject.transform.position)
-        //    //        //{
-
-
-        //    //        //objetivo.transform.position= new Vector3(Random.Range(transform.position.magnitude - 500.0f, transform.position.magnitude + 500.0f), 0,
-        //    //        //Random.Range(transform.position.magnitude - 500.0f, transform.position.magnitude + 500.0f));
-
-        //    //        //Debug.Log("Nuevo objetivo RATA");
-        //    //        //Otra opcion
-        //    //        //navAgente.destination = new Vector3(Random.Range(-1000.0f, 1000.0f), 0, Random.Range(-1000.0f, 1000.0f));
-        //    //        //}
-        //    //        break;
-        //    //    default:
-        //    //        break;
-        //    //}
-
-        //    base.Update();
-        //}
-
+            base.Update();
+        }
         /// <summary>
         /// Gestiona la lógica de la rata en función de la flauta
         /// </summary>
@@ -96,15 +103,14 @@ namespace UCM.IAV.Movimiento
 
             if (estado == Estado.FLAUTA_OFF)
             {
-                Debug.Log("Dejamos de seguir al flautista");
                 InvokeRepeating("CambiaObjetivo", 0, 5.0f);
             }
-            else
-            {
+            //TODO: guardar el getComponent en una variable privada
+            else if ((transform.position - flautista.transform.position).magnitude < radius) {
                 CancelInvoke();
+                mat.SetColor("_Color", Color.green);
+                if (objetivo != flautista) Destroy(objetivo);
                 objetivo = flautista;
-                Debug.Log("Empieza a seguir al flautista");
-
             }
         }
 
