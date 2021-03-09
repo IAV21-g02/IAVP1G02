@@ -267,7 +267,7 @@ MonoBehaviour:
   rataParent: {fileID: 2038698509}
   obstaculo: {fileID: 4602846923104445613, guid: ab61ee425cdf1774e84c13e16e134e97,
     type: 3}
-  maxRatas: 5
+  maxRatas: 10
   numObst: 50
   timeToCreateRat: 1
 --- !u!1001 &323987173
