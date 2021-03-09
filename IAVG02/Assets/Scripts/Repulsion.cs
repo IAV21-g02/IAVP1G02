@@ -13,33 +13,15 @@ public class Repulsion : MonoBehaviour
         rb = this.gameObject.GetComponent<Rigidbody>();
     }
 
-
-
-
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("objeto en on triggerEnter");
         AgenteRata rata = other.gameObject.GetComponent<AgenteRata>();
-        if(rata != null)
+        if(rata != null && rata.getEstado() == Estado.FLAUTA_OFF)
         {
-            Debug.Log("rata en on triggerEnter");
             Vector3 dir = this.gameObject.transform.position - other.gameObject.transform.position;
             dir = dir.normalized;
             rb.AddForce(dir * force, ForceMode.Impulse);
-
         }
     }
-
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    AgenteRata rata = other.gameObject.GetComponent<AgenteRata>();
-    //    if (rata != null)
-    //    {
-    //        Vector3 dir = this.gameObject.transform.position - other.gameObject.transform.position;
-    //        dir = dir.normalized;
-    //        rb.AddForce(dir * force, ForceMode.Impulse);
-
-    //    }
-    //}
 }
 

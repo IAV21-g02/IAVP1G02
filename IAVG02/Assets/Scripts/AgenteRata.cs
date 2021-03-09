@@ -33,12 +33,14 @@ namespace UCM.IAV.Movimiento
             limZ = suelo.z;
 
             ag = gameObject.GetComponentInChildren<Agente>();
-            radius = gameObject.GetComponentInChildren<SphereCollider>().radius;
+
+            radius = Random.Range(5, 11);
+            gameObject.GetComponentInChildren<SphereCollider>().radius = radius;
             mat = gameObject.GetComponentInChildren<Renderer>().material;
 
             //avisamos de nuestra existencia a la flauta
             Flauta aux = flautista.GetComponent<Flauta>();
-           
+
             if (aux != null)
             {
                 aux.InsertaAgente(this);
@@ -48,34 +50,17 @@ namespace UCM.IAV.Movimiento
             InvokeRepeating("CambiaObjetivo", 0, 5.0f);
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-
-            if (other.tag == "Player")
-                Debug.Log(estado.ToString() + " " + other.tag);
-
-            //Si la flauta esta activa y entra en contacto con el jugador
-            if (estado == Estado.FLAUTA_ON && other.gameObject.GetComponent<JugadorAgente>())
-            {
-                CancelInvoke();
-                mat.SetColor("_Color", Color.green);
-                if (objetivo != flautista) Destroy(objetivo);
-                objetivo = flautista;
-            }
-        }
-
         private void OnTriggerExit(Collider other)
         {
             //Si la flauta esta activa y entra en contacto con el jugador
             if (estado == Estado.FLAUTA_ON && other.gameObject.GetComponent<JugadorAgente>())
             {
-                InvokeRepeating("CambiaObjetivo", 0, 5.0f);
+                TocaFlauta(Estado.FLAUTA_OFF);
             }
         }
 
         void CambiaObjetivo()
         {
-            mat.SetColor("_Color", Color.blue);
             if (objetivo != flautista)
             {
                 Destroy(objetivo);
@@ -88,7 +73,8 @@ namespace UCM.IAV.Movimiento
         public override void Update()
         {
             if (estado == Estado.FLAUTA_ON && objetivo == flautista &&
-                (transform.position - flautista.transform.position).magnitude < radius / 5) {
+                (transform.position - flautista.transform.position).magnitude < radius / 5)
+            {
                 ag.velocidad = Vector3.zero;
             }
 
@@ -101,16 +87,18 @@ namespace UCM.IAV.Movimiento
         {
             estado = nuevo;
 
-            if (estado == Estado.FLAUTA_OFF)
+            switch (estado)
             {
-                InvokeRepeating("CambiaObjetivo", 0, 5.0f);
-            }
-            //TODO: guardar el getComponent en una variable privada
-            else if ((transform.position - flautista.transform.position).magnitude < radius) {
-                CancelInvoke();
-                mat.SetColor("_Color", Color.green);
-                if (objetivo != flautista) Destroy(objetivo);
-                objetivo = flautista;
+                case Estado.FLAUTA_OFF:
+                    mat.SetColor("_Color", Color.blue);
+                    InvokeRepeating("CambiaObjetivo", 0, 5.0f);
+                    break;
+                case Estado.FLAUTA_ON:
+                    CancelInvoke();
+                    mat.SetColor("_Color", Color.green);
+                    if (objetivo != flautista) Destroy(objetivo);
+                    objetivo = flautista;
+                    break;
             }
         }
 

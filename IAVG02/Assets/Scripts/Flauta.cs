@@ -5,9 +5,30 @@ using UCM.IAV.Movimiento;
 
 public class Flauta : MonoBehaviour
 {
-    // private ComportamientoAgente[] agentes;
+    /// <summary>
+    /// Lista de los agentes externos al jugador
+    /// </summary>
     private List<ComportamientoAgente> agentes;
+    /// <summary>
+    /// Estado actual de la flauta
+    /// </summary>
     private Estado estado;
+    /// <summary>
+    ///Radio grande del sonido de la flauta 
+    /// </summary>
+    public float bRadius;
+    /// <summary>
+    /// Radio pequeño e inicial del sonido de la flauta
+    /// </summary>
+    private float sRadius;
+    /// <summary>
+    /// Rerencia al componente SphereCollider
+    /// </summary>
+    private SphereCollider spColl;
+    /// <summary>
+    /// Referencia al perro
+    /// </summary>
+    private AgentePerro perro;
 
     public Estado GetEstado() {
         return estado;
@@ -18,6 +39,9 @@ public class Flauta : MonoBehaviour
         estado = Estado.FLAUTA_OFF;
         //Se buscan todos los objetos con el componente Agente o heredados de Agente
         agentes = new List<ComportamientoAgente>();
+        spColl = gameObject.GetComponent<SphereCollider>();
+        sRadius = spColl.radius;
+        perro = GameObject.FindGameObjectWithTag("perro").GetComponent<AgentePerro>();
     }
 
     /// <summary>
@@ -25,21 +49,32 @@ public class Flauta : MonoBehaviour
     /// a los agentes del estado de ésta
     /// </summary>
     public void TocarFlauta() {
-        //Cambia el estado de la flauta
+        //Cambia el estado de la flauta y
+        //el tamaño del collider (sonido) de la flauta
         switch (estado) {
+            //Cuando la flauta no suena, es pequeño
             case Estado.FLAUTA_OFF:
                 estado = Estado.FLAUTA_ON;
+                spColl.radius = bRadius;
                 break;
+            //Cuando la flauta suena, es grande
             case Estado.FLAUTA_ON:
                 estado = Estado.FLAUTA_OFF;
+                spColl.radius = sRadius;
                 break;
             default:
                 break;
         }
 
-        //Busca a todos los agentes y les avisa del estado de la flauta
-        foreach (ComportamientoAgente ag in agentes) {
-            ag.TocaFlauta(estado);
+        //Avisa al perro del estado de la flauta
+        perro.TocaFlauta(estado);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //Cuando la flauta suene y cuando la otra entidad sea una rata
+        if (estado == Estado.FLAUTA_ON && other.GetComponent<AgenteRata>()) {
+            other.GetComponent<AgenteRata>().TocaFlauta(estado);
         }
     }
 

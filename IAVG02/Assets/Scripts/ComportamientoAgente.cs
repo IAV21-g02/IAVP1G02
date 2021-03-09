@@ -51,6 +51,10 @@ namespace UCM.IAV.Movimiento
         [Tooltip("Estado del agente")]
         protected Estado estado;
 
+        public Estado getEstado() {
+            return estado;
+        }
+
         /// <summary>
         /// Al despertar, establecer el agente que hará uso del comportamiento
         /// </summary>
