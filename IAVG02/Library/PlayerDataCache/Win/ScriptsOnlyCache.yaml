@@ -50,21 +50,21 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11242}
+      Script: {instanceID: 11246}
     - Class: 114
-      Script: {instanceID: 11392}
+      Script: {instanceID: 11396}
     - Class: 114
-      Script: {instanceID: 12040}
+      Script: {instanceID: 12044}
     - Class: 114
-      Script: {instanceID: 12212}
+      Script: {instanceID: 12216}
     - Class: 114
-      Script: {instanceID: 12636}
-    - Class: 114
-      Script: {instanceID: 12708}
+      Script: {instanceID: 12640}
     - Class: 114
       Script: {instanceID: 12712}
     - Class: 114
-      Script: {instanceID: 15120}
+      Script: {instanceID: 12716}
+    - Class: 114
+      Script: {instanceID: 12746}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -458,6 +458,12 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
+      Hash: 9790733d213bd425df221522ae5a494b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Impulso
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -564,12 +570,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 9790733d213bd425df221522ae5a494b
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Impulso
   platform: 5
   scenePathNames:
   - Assets/Scenes/Hamelin.unity
