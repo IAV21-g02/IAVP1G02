@@ -31,7 +31,6 @@ public class Inicializacion : MonoBehaviour
         Vector3 suelo = GameObject.Find("Suelo").GetComponent<MeshCollider>().bounds.max;
         limX = suelo.x - suelo.x / 10;
         limZ = suelo.z - suelo.z / 10;
-        //ThisIsNotHaltonButWorks();
         for(int i = 0; i < numObst; i++)
         {
             Halton2d(baseX, baseY, i + 1);
@@ -48,19 +47,6 @@ public class Inicializacion : MonoBehaviour
         {
             Instantiate(rataPrefab, rataParent.transform.position, Quaternion.identity, rataParent.transform);
             numrats++;
-        }
-    }
-
-    private void ThisIsNotHaltonButWorks (){
-
-        for (int i = 0; i < numObst; i++) {
-            float posX = Random.Range(-limX, limX);
-            float posZ = Random.Range(-limZ, limZ);
-
-            GameObject objeto = Instantiate(obstaculo, new Vector3(posX, 0, posZ), Quaternion.identity, transform);
-            float sizeX = Random.Range(0.5f, 2.5f);
-            float sizeZ = Random.Range(0.5f, 2.5f);
-            objeto.transform.localScale = new Vector3(sizeX, 3, sizeZ);
         }
     }
 

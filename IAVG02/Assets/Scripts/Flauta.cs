@@ -5,9 +5,16 @@ using UCM.IAV.Movimiento;
 
 public class Flauta : MonoBehaviour
 {
-    // private ComportamientoAgente[] agentes;
+    /// <summary>
+    /// Lista de los agentes externos al jugador
+    /// </summary>
     private List<ComportamientoAgente> agentes;
+    /// <summary>
+    /// Estado actual de la flauta
+    /// </summary>
     private Estado estado;
+
+    Material mat;
 
     public Estado GetEstado() {
         return estado;
@@ -17,6 +24,7 @@ public class Flauta : MonoBehaviour
     {
         estado = Estado.FLAUTA_OFF;
         //Se buscan todos los objetos con el componente Agente o heredados de Agente
+        mat = gameObject.GetComponentInChildren<Renderer>().material;
         agentes = new List<ComportamientoAgente>();
     }
 
@@ -25,11 +33,14 @@ public class Flauta : MonoBehaviour
     /// a los agentes del estado de ésta
     /// </summary>
     public void TocarFlauta() {
-        //Cambia el estado de la flauta
+        //Cambia el estado de la flauta y
+        //el tamaño del collider (sonido) de la flauta
         switch (estado) {
+            //Cuando la flauta no suena, es pequeño
             case Estado.FLAUTA_OFF:
                 estado = Estado.FLAUTA_ON;
                 break;
+            //Cuando la flauta suena, es grande
             case Estado.FLAUTA_ON:
                 estado = Estado.FLAUTA_OFF;
                 break;
@@ -37,9 +48,17 @@ public class Flauta : MonoBehaviour
                 break;
         }
 
-        //Busca a todos los agentes y les avisa del estado de la flauta
-        foreach (ComportamientoAgente ag in agentes) {
+        foreach (ComportamientoAgente ag in agentes)
+        {
             ag.TocaFlauta(estado);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //Cuando la flauta suene y cuando la otra entidad sea una rata
+        if (estado == Estado.FLAUTA_ON && other.GetComponent<AgenteRata>()) {
+            other.GetComponent<AgenteRata>().TocaFlauta(estado);
         }
     }
 
@@ -48,12 +67,12 @@ public class Flauta : MonoBehaviour
         //Se encarga de cambiar el estado de la flauta
         //Se toca la flauta mientras la tecla espacio este pulsada
         if (Input.GetKeyDown(KeyCode.Space)) {
-            gameObject.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.black);
+           mat.SetColor("_Color", Color.black);
             TocarFlauta();
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
-            gameObject.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.yellow);
+            mat.SetColor("_Color", Color.yellow);
             TocarFlauta();
         }
     }

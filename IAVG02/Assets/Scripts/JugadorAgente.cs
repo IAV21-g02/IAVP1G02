@@ -55,7 +55,7 @@ namespace UCM.IAV.Movimiento
             }
             else
             {
-                cuerpoRigido.AddForce(force * velocidad.normalized, ForceMode.Acceleration);
+                cuerpoRigido.AddForce(force * velocidad.normalized, ForceMode.Force);
             } 
         }
 
