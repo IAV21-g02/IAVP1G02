@@ -19,6 +19,7 @@ namespace UCM.IAV.Movimiento
         private float limZ;
         private float radius;
         private Material mat;
+        private float radiusPlayer;
 
         // Start is called before the first frame update
         void Start()
@@ -40,6 +41,7 @@ namespace UCM.IAV.Movimiento
 
             //avisamos de nuestra existencia a la flauta
             Flauta aux = flautista.GetComponent<Flauta>();
+            radiusPlayer = flautista.GetComponent<SphereCollider>().radius;
 
             if (aux != null)
             {
@@ -87,18 +89,17 @@ namespace UCM.IAV.Movimiento
         {
             estado = nuevo;
 
-            switch (estado)
+            if (estado == Estado.FLAUTA_OFF)
             {
-                case Estado.FLAUTA_OFF:
-                    mat.SetColor("_Color", Color.blue);
-                    InvokeRepeating("CambiaObjetivo", 0, 5.0f);
-                    break;
-                case Estado.FLAUTA_ON:
-                    CancelInvoke();
-                    mat.SetColor("_Color", Color.green);
-                    if (objetivo != flautista) Destroy(objetivo);
-                    objetivo = flautista;
-                    break;
+                mat.SetColor("_Color", Color.blue);
+                InvokeRepeating(nameof(CambiaObjetivo), 0, 5.0f);
+            }
+            else if ((transform.position - flautista.transform.position).magnitude < radius + radiusPlayer)
+            {
+                CancelInvoke();
+                mat.SetColor("_Color", Color.green);
+                if (objetivo != flautista) Destroy(objetivo);
+                objetivo = flautista;
             }
         }
 

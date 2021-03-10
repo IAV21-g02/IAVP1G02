@@ -13,22 +13,8 @@ public class Flauta : MonoBehaviour
     /// Estado actual de la flauta
     /// </summary>
     private Estado estado;
-    /// <summary>
-    ///Radio grande del sonido de la flauta 
-    /// </summary>
-    public float bRadius;
-    /// <summary>
-    /// Radio pequeño e inicial del sonido de la flauta
-    /// </summary>
-    private float sRadius;
-    /// <summary>
-    /// Rerencia al componente SphereCollider
-    /// </summary>
-    private SphereCollider spColl;
-    /// <summary>
-    /// Referencia al perro
-    /// </summary>
-    private AgentePerro perro;
+
+    Material mat;
 
     public Estado GetEstado() {
         return estado;
@@ -38,10 +24,8 @@ public class Flauta : MonoBehaviour
     {
         estado = Estado.FLAUTA_OFF;
         //Se buscan todos los objetos con el componente Agente o heredados de Agente
+        mat = gameObject.GetComponentInChildren<Renderer>().material;
         agentes = new List<ComportamientoAgente>();
-        spColl = gameObject.GetComponent<SphereCollider>();
-        sRadius = spColl.radius;
-        perro = GameObject.FindGameObjectWithTag("perro").GetComponent<AgentePerro>();
     }
 
     /// <summary>
@@ -55,19 +39,19 @@ public class Flauta : MonoBehaviour
             //Cuando la flauta no suena, es pequeño
             case Estado.FLAUTA_OFF:
                 estado = Estado.FLAUTA_ON;
-                spColl.radius = bRadius;
                 break;
             //Cuando la flauta suena, es grande
             case Estado.FLAUTA_ON:
                 estado = Estado.FLAUTA_OFF;
-                spColl.radius = sRadius;
                 break;
             default:
                 break;
         }
 
-        //Avisa al perro del estado de la flauta
-        perro.TocaFlauta(estado);
+        foreach (ComportamientoAgente ag in agentes)
+        {
+            ag.TocaFlauta(estado);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -83,12 +67,12 @@ public class Flauta : MonoBehaviour
         //Se encarga de cambiar el estado de la flauta
         //Se toca la flauta mientras la tecla espacio este pulsada
         if (Input.GetKeyDown(KeyCode.Space)) {
-            gameObject.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.black);
+           mat.SetColor("_Color", Color.black);
             TocarFlauta();
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
-            gameObject.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.yellow);
+            mat.SetColor("_Color", Color.yellow);
             TocarFlauta();
         }
     }

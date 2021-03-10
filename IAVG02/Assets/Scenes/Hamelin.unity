@@ -133,8 +133,9 @@ GameObject:
   - component: {fileID: 81180787}
   - component: {fileID: 81180786}
   - component: {fileID: 81180785}
+  - component: {fileID: 81180788}
   m_Layer: 0
-  m_Name: Muro (3)
+  m_Name: EsquinaSupDr
   m_TagString: Pared
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,24 +149,24 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81180783}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 44.2, y: 1.1701865, z: 43.3}
+  m_LocalPosition: {x: 51.51, y: 0, z: 54.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 958496523}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &81180785
-BoxCollider:
+--- !u!135 &81180785
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81180783}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &81180786
 MeshRenderer:
@@ -214,6 +215,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81180783}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &81180788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81180783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63c409cf12f7ec4580e2412c62dcd35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impulseForce: 10
 --- !u!1 &93747728
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,7 +963,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -8, y: 81, z: 3}
+  m_LocalPosition: {x: -1.1, y: 81, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -967,8 +981,9 @@ GameObject:
   - component: {fileID: 1108910627}
   - component: {fileID: 1108910626}
   - component: {fileID: 1108910625}
+  - component: {fileID: 1108910628}
   m_Layer: 0
-  m_Name: Muro (1)
+  m_Name: EsquinaInfDr
   m_TagString: Pared
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -982,24 +997,24 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108910623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36.2, y: 1.1701865, z: -32.6}
+  m_LocalPosition: {x: 51.25, y: 0, z: -46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 958496523}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1108910625
-BoxCollider:
+--- !u!135 &1108910625
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108910623}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1108910626
 MeshRenderer:
@@ -1048,6 +1063,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1108910623}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1108910628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108910623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63c409cf12f7ec4580e2412c62dcd35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impulseForce: 10
 --- !u!4 &1504764829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4602846923104445612, guid: ab61ee425cdf1774e84c13e16e134e97,
@@ -1066,25 +1094,26 @@ GameObject:
   - component: {fileID: 1806227728}
   - component: {fileID: 1806227727}
   - component: {fileID: 1806227726}
+  - component: {fileID: 1806227730}
   m_Layer: 0
-  m_Name: Muro
+  m_Name: EsquinaSupIz
   m_TagString: Pared
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1806227726
-BoxCollider:
+--- !u!135 &1806227726
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806227725}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1806227727
 MeshRenderer:
@@ -1141,12 +1170,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806227725}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43.3, y: 1.1701865, z: 43.8}
+  m_LocalPosition: {x: -48.77, y: 0, z: 54.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 958496523}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1806227730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806227725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63c409cf12f7ec4580e2412c62dcd35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impulseForce: 10
 --- !u!4 &1934792198 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4602846923104445612, guid: ab61ee425cdf1774e84c13e16e134e97,
@@ -1165,8 +1207,9 @@ GameObject:
   - component: {fileID: 1989470915}
   - component: {fileID: 1989470914}
   - component: {fileID: 1989470913}
+  - component: {fileID: 1989470916}
   m_Layer: 0
-  m_Name: Muro (2)
+  m_Name: EsquinaInfIz
   m_TagString: Pared
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1180,24 +1223,24 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989470911}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.51, y: 1.1701865, z: -43.9}
+  m_LocalPosition: {x: -48.9, y: 0, z: -45.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 958496523}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1989470913
-BoxCollider:
+--- !u!135 &1989470913
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989470911}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1989470914
 MeshRenderer:
@@ -1246,6 +1289,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1989470911}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1989470916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989470911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63c409cf12f7ec4580e2412c62dcd35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impulseForce: 10
 --- !u!1 &2038698509
 GameObject:
   m_ObjectHideFlags: 0
