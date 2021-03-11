@@ -14,6 +14,8 @@ public class Flauta : MonoBehaviour
     /// </summary>
     private Estado estado;
 
+    private AudioSource audioSource;
+
     /// <summary>
     /// Referencia al componente material 
     /// del GO
@@ -34,6 +36,7 @@ public class Flauta : MonoBehaviour
         //Se buscan todos los objetos con el componente Agente o heredados de Agente
         mat = gameObject.GetComponentInChildren<Renderer>().material;
         agentes = new List<ComportamientoAgente>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     /// <summary>
@@ -46,10 +49,12 @@ public class Flauta : MonoBehaviour
         switch (estado) {
             //Cuando la flauta no suena, es pequeño
             case Estado.FLAUTA_OFF:
+                audioSource.Play();
                 estado = Estado.FLAUTA_ON;
                 break;
             //Cuando la flauta suena, es grande
             case Estado.FLAUTA_ON:
+                audioSource.Pause();
                 estado = Estado.FLAUTA_OFF;
                 break;
             default:

@@ -19,11 +19,18 @@ namespace UCM.IAV.Movimiento
         /// </summary>
         private Material mat;
 
+        private AudioSource audioSource;
+        public AudioClip ladridoSonido;
+        public AudioClip lloroSonido;
+
         private void Start()
         {
             //Se registra el flautista como primer objetivo
             objetivo = GameObject.FindGameObjectWithTag("Player");
             flautista = objetivo;
+
+            audioSource = GetComponent<AudioSource>();
+            audioSource.volume = 0.25f;
 
             mat = gameObject.GetComponentInChildren<Renderer>().material;
 
@@ -47,14 +54,17 @@ namespace UCM.IAV.Movimiento
             switch (estado)
             {
                 case Estado.FLAUTA_OFF:
+                    audioSource.clip = ladridoSonido;
                     mat.SetColor("_Color", Color.red);
                     break;
                 case Estado.FLAUTA_ON:
+                    audioSource.clip = lloroSonido;
                     mat.SetColor("_Color", Color.Lerp(Color.red, Color.yellow, 0.5f));
                     break;
                 default:
                     break;
             }
+            audioSource.Play();
         }
 
         public override Direccion GetDireccion()
