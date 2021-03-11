@@ -157,9 +157,10 @@ MonoBehaviour:
   peso: 1
   prioridad: 1
   objetivo: {fileID: 0}
+  radiusStop: 7
   nuevoObjetivo: {fileID: 5919805460823538876, guid: 06450afc838da114bad434a81401f2fd,
     type: 3}
-  suelo: {fileID: 0}
+  objetivoPool: {fileID: 0}
 --- !u!114 &8096274364871336908
 MonoBehaviour:
   m_ObjectHideFlags: 0

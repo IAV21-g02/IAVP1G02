@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7535736987416646862}
   - component: {fileID: 7535736987416646863}
-  - component: {fileID: 7535736987416646848}
   - component: {fileID: 339461212}
   - component: {fileID: 5006005418177471278}
+  - component: {fileID: 6434863518893914429}
   m_Layer: 0
   m_Name: Perro
   m_TagString: perro
@@ -54,21 +54,6 @@ MonoBehaviour:
   aceleracionMax: 15
   velocidad: {x: 0, y: 0, z: 0}
   force: 5
---- !u!114 &7535736987416646848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7535736987416646849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9102b9c64e9a9f548b5224511416b1fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  peso: 1
-  prioridad: 1
-  objetivo: {fileID: 0}
 --- !u!54 &339461212
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -98,6 +83,21 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6434863518893914429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7535736987416646849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5e34e87b2d9504d9ae77cbb283ee48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  peso: 1
+  prioridad: 1
+  objetivo: {fileID: 0}
 --- !u!1 &7535736987846695317
 GameObject:
   m_ObjectHideFlags: 0

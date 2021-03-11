@@ -14,6 +14,9 @@ namespace UCM.IAV.Movimiento
     using UnityEngine;
     using UnityEngine.AI;
 
+    /// <summary>
+    /// Estados de la flauta
+    /// </summary>
     public enum Estado : int
     {
         FLAUTA_ON = 0,

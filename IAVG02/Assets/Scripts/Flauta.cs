@@ -14,8 +14,16 @@ public class Flauta : MonoBehaviour
     /// </summary>
     private Estado estado;
 
+    /// <summary>
+    /// Referencia al componente material 
+    /// del GO
+    /// </summary>
     Material mat;
 
+    /// <summary>
+    /// Devuelve el estado actual de la flauta
+    /// </summary>
+    /// <returns></returns>
     public Estado GetEstado() {
         return estado;
     }
@@ -57,8 +65,8 @@ public class Flauta : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Cuando la flauta suene y cuando la otra entidad sea una rata
-        if (estado == Estado.FLAUTA_ON && other.GetComponent<AgenteRata>()) {
-            other.GetComponent<AgenteRata>().TocaFlauta(estado);
+        if (estado == Estado.FLAUTA_ON && other.GetComponent<ComportamientoRata>()) {
+            other.GetComponent<ComportamientoRata>().TocaFlauta(estado);
         }
     }
 
@@ -77,6 +85,11 @@ public class Flauta : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Inserta al agente a la lista de agentes
+    /// para que puedan ser avisados de cualquier evento
+    /// </summary>
+    /// <param name="agente"></param>
     public void InsertaAgente(ComportamientoAgente agente)
     {
         if (agente != null)

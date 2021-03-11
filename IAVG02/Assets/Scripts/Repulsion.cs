@@ -5,9 +5,18 @@ using UCM.IAV.Movimiento;
 
 public class Repulsion : MonoBehaviour
 {
+    /// <summary>
+    /// Fuerza de la repulsión
+    /// </summary>
+    [Tooltip("Fuerza de la repulsión")]
     public float force;
+
+    /// <summary>
+    /// Referencia al componente 
+    /// Rigidbody del GO
+    /// </summary>
     private Rigidbody rb;
-    // Start is called before the first frame update
+
     void Start()
     {
         rb = this.gameObject.GetComponentInParent<Rigidbody>();
@@ -18,7 +27,8 @@ public class Repulsion : MonoBehaviour
         Repulsion rata = other.gameObject.GetComponent<Repulsion>();
         if(rata != null)
         {
-            Vector3 dir = this.gameObject.transform.position - other.gameObject.transform.position;
+            //Calcula el vector director de la repulsión
+            Vector3 dir = other.gameObject.transform.position - this.gameObject.transform.position;
             dir = dir.normalized;
             rb.AddForce(dir * force, ForceMode.Impulse);
         }

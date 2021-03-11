@@ -4,18 +4,31 @@ using UnityEngine;
 
 namespace UCM.IAV.Movimiento
 {
-    public class AgentePerro : ComportamientoAgente
+    /// <summary>
+    /// Clase que gestiona el comportamiento del perro
+    /// respecto a la flauta
+    /// </summary>
+    public class ComportamientoPerro : ComportamientoAgente
     {
+        /// <summary>
+        /// Referencia al flautista
+        /// </summary>
         private GameObject flautista;
+        /// <summary>
+        /// Referencia al material del GO
+        /// </summary>
         private Material mat;
 
         private void Start()
         {
+            //Se registra el flautista como primer objetivo
             objetivo = GameObject.FindGameObjectWithTag("Player");
             flautista = objetivo;
+
+            mat = gameObject.GetComponentInChildren<Renderer>().material;
+
             //avisamos de nuestra existencia a la flauta
             Flauta aux = flautista.GetComponent<Flauta>();
-            mat = gameObject.GetComponentInChildren<Renderer>().material;
             if (aux != null)
             {
                 aux.InsertaAgente(this);
@@ -29,11 +42,11 @@ namespace UCM.IAV.Movimiento
         {
             estado = nuevo;
 
-            //Lógica del perro
+            //Gestión de colores en función de si toca 
+            //o no toca la flauta
             switch (estado)
             {
                 case Estado.FLAUTA_OFF:
-                    //Sigue hacia el flautista
                     mat.SetColor("_Color", Color.red);
                     break;
                 case Estado.FLAUTA_ON:
