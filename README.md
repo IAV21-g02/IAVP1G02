@@ -45,10 +45,10 @@ Para evitar que durante la huida del perro este se quede atrapado en las esquina
 
 Para implementar el comportamiento descrito en el enunciado de la práctica hemos desarollado los siguientes comportamientos:
 
-### 3.1 Script AgentePerro
+### 3.1 Script ComportamientoPerro
 Maneja el comportamiento del perro. Implementa tanto el comportamiento de seguir al jugador cuando la flauta no está sonando como el comportamiento de huida en caso contrario.
 
-### 3.2 Script AgenteRata
+### 3.2 Script ComportamientoRata
 Maneja el comportamiento de las ratas. Implementa el comportamiento seguir de forma similar al perro con la diferencia de que este solo está activo cuando esté sonando la flauta. También implementa el comportamiento merodear, el cual consiste en cada x segundos cambiar la dirección en la que se están desplazando las ratas en el caso de que no esté sonando la flauta o que se encuentren a una distancia lo suficientemente grande para no oirla.
 
 ### 3.3 Script Flauta
